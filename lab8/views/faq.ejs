@@ -1,0 +1,31 @@
+<h2>Foire aux Questions</h2>
+<p>Retrouvez ici les réponses aux questions les plus fréquemment posées.</p>
+
+<div class="faq-container">
+    <% faqs.forEach((faq, index) => { %>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(<%= index %>)">
+                <%= faq.question %>
+                <span class="toggle-icon">+</span>
+            </button>
+            <div class="faq-answer" id="answer-<%= index %>">
+                <p><%= faq.answer %></p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<script>
+    function toggleAnswer(index) {
+        const answer = document.getElementById(`answer-${index}`);
+        const icon = document.querySelector(`#answer-${index}`).previousElementSibling.querySelector('.toggle-icon');
+        
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            icon.textContent = '+';
+        } else {
+            answer.style.display = 'block';
+            icon.textContent = '-';
+        }
+    }
+</script>
